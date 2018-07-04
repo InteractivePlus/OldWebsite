@@ -26,7 +26,7 @@
 			function redirectURLTo(URL){
 				window.location = URL;
 				window.location.href = URL;
-				$("head").append('<meta http-equiv="refresh" content="0;url=' + URL + '" />';
+				$("head").append('<meta http-equiv="refresh" content="0;url=' + URL + '" />');
 			}
 			$(document).ready(function(e) {
 				if(getUrlParam("selectLang").toLowerCase() != "true"){
