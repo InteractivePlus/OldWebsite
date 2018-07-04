@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+    	<meta charset="utf-8" />
+		<script src="js/core.js"></script>
+		<script src="js/jquery.min.js"></script>
+        <script src="js/BOOST.main.js"></script>
+        <link type="text/css" href="css/BOOST.main.css" rel="stylesheet" />
+        <link type="text/css" href="css/BOOST.animate.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <!-- selectLang in the GET variable will be set to "true" if user wants to set language -->
+        <!-- zh-cn and zh-chs goes to chinese simplified, while zh, zh-* goes to traditional chinese and en, en-* goes to english -->
+        <script>
+			function getUrlParam(name) {
+				//构造一个含有目标参数的正则表达式对象
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				//匹配目标参数
+				var r = window.location.search.substr(1).match(reg);
+				//返回参数值
+				if(r != null) {
+					return decodeURI(r[2]);
+				}
+				return null;
+			}
+			function redirectURLTo(URL){
+				window.location = URL;
+				window.location.href = URL;
+				$("head").append('<meta http-equiv="refresh" content="0;url=' + URL + '" />';
+			}
+			$(document).ready(function(e) {
+				if(getUrlParam("selectLang").toLowerCase() != "true"){
+					$("#redirectBox").show();
+					var userLang = (navigator.language || navigator.userLanaguage || navigator.browserLanguage).toLowerCase();
+					if(userLang == "zh-cn" || userLang == "zh-chs"){
+						redirectURLTo("/cn/");
+					}else if(userLang.indexOf("zh") > -1){
+						redirectURLTo("/cnt/");
+					}else{
+						redirectURLTo("/en/");
+					}
+				}else{
+					$("#selectLangBox").show();
+				}
+            });
+		</script>
+        <title>InteractivePlus - Celebrating New Century Of Coding And Open Source</title>
+        <meta name="keywords" content="InteractivePlus, Interactive+, Coding Group, Studio, Technology, Teeneagers, Raspberry, Cloud Service, Hosting Service, BATG" />
+        <meta name="description" content="InteractivePlus is a teenager coding group that focus on open-source, and make our world better by the push of technologies." />
+    </head>
+    <body>
+        <div class="cover" id="redirectBox" style="display:none;">
+        	<div class="inner">
+            	<h1>Automatic Redirect</h1>
+                <p>The system has detected your langage and will automatically rewrite your URL to your language setting</p>
+            </div>
+        </div>
+        <!-- If select language option was on, then this page will be represented -->
+        <div class="container-fluid" id="selectLangBox" style="display:none;">
+            <div class="col col-as-base invisible-comp invisible-bigcomp">
+                <div class="row row-phone-4 bg-black">
+                    <a class="text-white" href="<?php echo $CHSURL; ?>"><p class="text-center" style="font-size:10vh;line-height:33vh;">简体中文</p></a>
+                </div>
+                <div class="row row-phone-4 bg-white">
+                    <a class="text-black" href="<?php echo $CHTURL; ?>"><p class="text-center" style="font-size:10vh;line-height:33vh;">繁體中文</p></a>
+                </div>
+                <div class="row row-phone-4 bg-black">
+                    <a class="text-white" href="<?php echo $ENGURL; ?>"><p class="text-center" style="font-size:10vh;line-height:33vh;">ENGLISH</p></a>
+                </div>
+            </div>
+            <div class="row row-as-base invisible-phone invisible-tablet">
+                <div class="col col-comp-4 bg-black">
+                    <a href="<?php echo $CHSURL; ?>"><p class="text-center text-white" style="font-size:5vw;line-height:100vh;">简体中文</p></a>
+                </div>
+                <div class="col col-comp-4 bg-white">
+                    <a href="<?php echo $ENGURL; ?>"><p class="text-center text-black" style="font-size:5vw;line-height:100vh;">ENGLISH</p></a>
+                </div>
+                <div class="col col-comp-4 bg-black">
+                    <a href="<?php echo $CHTURL; ?>"><p class="text-center text-white" style="font-size:5vw;line-height:100vh;">繁體中文</p></a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
