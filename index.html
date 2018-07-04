@@ -29,15 +29,16 @@
 				$("head").append('<meta http-equiv="refresh" content="0;url=' + URL + '" />');
 			}
 			$(document).ready(function(e) {
-				if(getUrlParam("selectLang").toLowerCase() != "true"){
+				var isselectingLang = getUrlParam("selectLang");
+				if(isselectingLang == null || isselectingLang != "true"){
 					$("#redirectBox").show();
 					var userLang = (navigator.language || navigator.userLanaguage || navigator.browserLanguage).toLowerCase();
 					if(userLang == "zh-cn" || userLang == "zh-chs"){
-						redirectURLTo("/cn/");
+						redirectURLTo("cn/");
 					}else if(userLang.indexOf("zh") > -1){
-						redirectURLTo("/cnt/");
+						redirectURLTo("cnt/");
 					}else{
-						redirectURLTo("/en/");
+						redirectURLTo("en/");
 					}
 				}else{
 					$("#selectLangBox").show();
